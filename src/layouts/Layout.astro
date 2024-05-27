@@ -1,0 +1,33 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Personal portafolio" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body class="overflow-x-hidden bg-dark bg-[url('/noise_dark.png')]">
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+    :root {
+        --color-primary: #352F44;
+        --color-secondary: #FAF0E6;
+        --color-dark: #1A1A1B;
+    }
+</style>

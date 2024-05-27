@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<style>
+  .is-pinned {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(53,47,68,1);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(53,47,68,1);
+    box-shadow: 0px 4px 5px 0px rgba(53,47,68,1);
+    }
+</style>
+
+<nav id="nav"class="sticky top-[-1px] bg-secondary bg-[url('/noise_light.png')] h-[100px] w-full flex flex-row items-center justify-between px-5">
+  <div class="flex flex-row items-center gap-4">
+    <div class="bg-black w-10 h-10 rounded-full"></div>
+    <h5 class="text-primary text-lg font-semibold font-oswald">Jeferson Hernandez</h5>
+    <Icon name="line" class="hidden h-6 w-6 md:block" />
+    <div class="hidden text-primary flex-row gap-3 md:flex">
+      <a href="#" class="font-montserrat text-sm">Inicio</a>
+      <a href="#" class="font-montserrat text-sm">Habilidades</a>
+      <a href="#" class="font-montserrat text-sm">Proyectos</a>
+    </div>
+  </div>
+  <div>
+    <Icon name="hamburger_icon" class="h-10 w-10 lg:hidden" />
+    <div class="hidden flex-row gap-3 lg:flex">
+      <Icon name="github_solid" class="h-6 w-6" />
+      <Icon name="linkedin" class="h-6 w-6" />
+      <Icon name="twitter" class="h-6 w-6" />
+      <Icon name="line" class="h-6 w-6" />
+      <Icon name="mail" class="h-6 w-6" />
+    </div>
+  </div>
+</nav>
+
+<script>
+  //https://davidwalsh.name/detect-sticky
+  const nav = document.getElementById('nav');
+  const observer = new IntersectionObserver(
+    ([e]) => e.target.classList.toggle('is-pinned',
+      e.intersectionRatio < 1),
+      { threshold: [1] }
+    )
+
+  observer.observe(nav as Element)
+</script>
