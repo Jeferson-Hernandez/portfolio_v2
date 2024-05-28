@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import type { Project } from "../consts/projects";
+import spaceTourism from '../assets/space-tourism.jpg';
+
+interface Props {
+  project: Project
+}
+
+const { project } = Astro.props;
+---
+
+<div class="flex flex-col gap-2 bg-secondary px-2 pt-2 pb-1 rounded-lg max-w-[340px] h-[300px]">
+  <div class="flex flex-row justify-between items-center gap-5">
+    <h2 class="text-lg text-oswald font-bold text-primary">{project.name}</h2>
+    <div class="flex flex-row gap-2">
+      {
+        project.figma 
+          && <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center"><Icon name="figma" class="h-5 w-5"/></a>
+      }
+      <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center"><Icon name="github_outline" class="h-5 w-5"/></a>
+      <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center"><Icon name="live_project" class="h-4 w-4"/></a>
+    </div>
+  </div>
+  <Image 
+    src={spaceTourism}
+    alt="space tourism"
+    width="900"
+    height="700"
+    class="w-full h-full object-cover rounded"
+  />
+</div>

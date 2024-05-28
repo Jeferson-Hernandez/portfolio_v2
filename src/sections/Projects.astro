@@ -1,0 +1,14 @@
+---
+import SectionTitle from "../components/SectionTitle.astro"
+import { PROJECTS } from "../consts/projects"
+import ProjectCard from "../components/ProjectCard.astro"
+---
+
+<section class="pb-48 px-3">
+  <SectionTitle title="Proyectos" reverse={true} />
+  <div class="flex flex-row justify-center items-center pt-20">
+    {
+      PROJECTS.map((project) => <ProjectCard project={project}/>)
+    }
+  </div>
+</section>

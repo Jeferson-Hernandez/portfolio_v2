@@ -1,0 +1,65 @@
+---
+import AbilitiesList from "../components/AbilitiesList.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import { ABILITIES } from '../consts/abilities';
+---
+
+<section class="pt-24 pb-24 px-3 lg:pb-36">
+  <SectionTitle title="Habilidades" reverse={false} />
+  <div class="flex flex-col items-center pt-20">
+    <div class="relative bg-[url('/noise_light.png')] flex flex-row justify-between text-center rounded-2xl bg-secondary">
+      <button data-type="development" class="abilities text-base font-oswald font-bold py-5 px-4 z-10 w-28 text-secondary transition-colors delay-150 duration-200">Desarrollo</button>
+      <button data-type="technical" class="abilities text-base font-oswald font-bold py-5 px-4 z-10 w-28 text-primary transition-colors delay-150 duration-200">Técnicas</button>
+      <div class="bg-abilities absolute h-full w-[50%] bg-primary rounded-xl transition-transform duration-500"/>
+    </div>
+  </div>
+  <div class="pt-20">
+    <div id="development" class="flex flex-col md:flex-row md:gap-28 md:justify-center">
+      {
+        ABILITIES.map((ability) => 
+          ability.type === 'development' &&
+          <AbilitiesList ability={ability} />
+        )
+      }
+    </div>
+    <div id="technical" class="flex flex-col md:flex-row md:gap-28 md:justify-center">
+      {
+        ABILITIES.map((ability) => 
+          ability.type === 'technical' &&
+          <AbilitiesList ability={ability} />
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const development = document.getElementById('development')
+  const technical = document.getElementById('technical')
+  const abilitiesBg = document.querySelector('.bg-abilities')
+
+  technical?.classList.add('hidden')
+
+  const buttons = document.querySelectorAll('.abilities')
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (e.target?.dataset.type === 'development') {
+        development?.classList.remove('hidden')
+        technical?.classList.add('hidden')
+
+        abilitiesBg?.classList.remove('translate-x-full')
+        buttons[0].classList.add('text-secondary')
+        buttons[1].classList.remove('text-secondary')
+      } else {
+        technical?.classList.remove('hidden')
+        development?.classList.add('hidden')
+
+        abilitiesBg?.classList.add('translate-x-full')
+        buttons[0].classList.remove('text-secondary')
+        buttons[1].classList.add('text-secondary')
+     }
+    })
+  })
+
+</script>

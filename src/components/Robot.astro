@@ -10,24 +10,40 @@
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
     const canvasElm = document.getElementById('robot_canvas');
-    const botonTest = document.getElementById('test')
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 320 / 320, .5, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true, canvas: canvasElm as HTMLElement });
     renderer.setSize(320, 320, true);
 
+    window.addEventListener('load', (e) => {
+      resizeRobot(window.innerWidth)
+    })
+
     window.addEventListener('resize', (e) => {
-      // console.log(e.target.innerWidth)
-      // console.log(e.target.innerHeight)
+      resizeRobot(window.innerWidth)
     })
 
-    botonTest?.addEventListener('click', () => {
-      camera.aspect = 640 /640 
-      camera.updateProjectionMatrix()
-      renderer.setSize(640, 640)
-    })
+    const resizeRobot = (screen: number) => {
+      if (screen > 0 && screen < 600) {
+        camera.aspect = 320 /320 
+        camera.updateProjectionMatrix()
+        renderer.setSize(320, 320)
+      } else if (screen > 600 && screen < 1023) {
+        camera.aspect = 420 /420 
+        camera.updateProjectionMatrix()
+        renderer.setSize(420, 420)
+      } else if (screen > 1023 && screen < 1280) {
+        camera.aspect = 520 /520 
+        camera.updateProjectionMatrix()
+        renderer.setSize(520, 520)
+      } else if (screen > 1280) {
+        camera.aspect = 620 /620 
+        camera.updateProjectionMatrix()
+        renderer.setSize(620, 620)
+      }
 
+    }
 
     const controls = new OrbitControls( camera, renderer.domElement );
     controls.object.position.set(0, 0, 3)
