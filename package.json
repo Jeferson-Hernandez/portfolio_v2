@@ -15,6 +15,7 @@
     "@types/three": "^0.164.1",
     "astro": "^4.9.1",
     "astro-icon": "^1.1.0",
+    "swiper": "^11.1.4",
     "tailwindcss": "^3.4.3",
     "three": "^0.164.1",
     "typescript": "^5.4.5"
