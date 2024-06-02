@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components"
+---
+<div id="sideMenu" class="fixed top-0 right-0 h-dvh w-[50%] translate-x-[100%] bg-secondary bg-[url('/noise_light.png')] rounded-l-lg transition-transform duration-500">
+    <div class="flex flex-col items-center justify-around py-32 h-full">
+        <div class="flex flex-col items-center gap-12">
+            <a href="#" class="font-montserrat text-2xl font-bold">Inicio</a>
+            <a href="#" class="font-montserrat text-2xl font-bold">Habilidades</a>
+            <a href="#" class="font-montserrat text-2xl font-bold">Proyectos</a>
+        </div>
+        <div class="flex flex-row gap-5">
+            <Icon name="github_solid" class="h-6 w-6" />
+            <Icon name="linkedin" class="h-6 w-6" />
+            <Icon name="twitter" class="h-6 w-6" />
+            <Icon name="mail" class="h-6 w-6" />
+        </div>
+        <Icon id="close_icon" name="close" class="h-10 w-10 absolute top-7 right-5"/>
+    </div>
+</div>
+
+<script>
+    const closeBtn =  document.getElementById('close_icon')
+    const sideMenu =  document.getElementById('sideMenu')
+    closeBtn.addEventListener('click', () => {
+        console.log('click')
+        sideMenu.classList.toggle('translate-x-[100%]')
+    })
+</script>

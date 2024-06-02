@@ -10,28 +10,31 @@ import ProjectCard from "../components/ProjectCard.astro"
     width: 350px;
   }
 
+  .swiper-slide-prev #tech > span{
+      color: red;
+      background: red;
+  }
+
   .swiper {
-    padding: 150px 0px 50px 0px;
+      padding-top: 150px;
   }
 </style>
 
 <section class="pb-48">
   <SectionTitle title="Proyectos" reverse={true} />
-  <!-- <div class="flex flex-row justify-center items-center pt-20">
-    {
-      PROJECTS.map((project) => <ProjectCard project={project}/>)
-    } -->
-  <!-- </div> -->
-  <div class="swiper">
+  <div class="swiper h-[500px]">
     <div class="swiper-wrapper">
       {
-        PROJECTS.map((project) => <div class="swiper-slide"><ProjectCard project={project}/></div>)
+        PROJECTS.map((project) => <div class="swiper-slide">
+                <ProjectCard project={project}/>
+            </div>
+            )
       }
     </div>
   </div>
-  <div class="flex flex-row items-center justify-center gap-10">
-    <div class="prev-slide h-12 w-12 bg-secondary rounded-full grid items-center justify-center cursor-pointer rotate-180"><Icon name="next" class="h-6 w-6"/></div>
-    <div class="next-slide h-12 w-12 bg-secondary rounded-full grid items-center justify-center cursor-pointer"><Icon name="next" class="h-6 w-6"/></div>
+  <div class="flex flex-row items-center justify-center gap-20 pt-20">
+    <div class="prev-slide h-12 w-12 bg-secondary rounded-lg grid items-center justify-center cursor-pointer rotate-180"><Icon name="next" class="h-6 w-6"/></div>
+    <div class="next-slide h-12 w-12 bg-secondary rounded-lg grid items-center justify-center cursor-pointer"><Icon name="next" class="h-6 w-6"/></div>
   </div>
 </section>
 
@@ -41,7 +44,16 @@ import ProjectCard from "../components/ProjectCard.astro"
   import 'swiper/css';
   import 'swiper/css/navigation';
 
-  const swiper = new Swiper('.swiper', {
+  function removeSlideStyles(e: HTMLElement) {
+      const projectCard = e.querySelector('#project_card')
+      projectCard?.classList.remove('-translate-y-5')
+
+      const techStack = e.querySelector('#tech')
+      techStack?.classList.remove('translate-y-60')
+      techStack?.classList.add('translate-y-7')
+  }
+
+  new Swiper('.swiper', {
     modules: [Navigation],
     direction: 'horizontal',
     initialSlide: 2,
@@ -50,8 +62,31 @@ import ProjectCard from "../components/ProjectCard.astro"
       nextEl: '.next-slide',
     },
     slidesPerView: 'auto',
-    roundLengths: true,
     spaceBetween: 100,
-    centeredSlides: true
+    centeredSlides: true,
+      on: {
+          slideChange: function (e) {
+              const active = e.slides[e.activeIndex]
+              const projectCard = active.querySelector('#project_card')
+              projectCard?.classList.add('-translate-y-5')
+
+              const techStack = active.querySelector('#tech')
+              techStack?.classList.add('translate-y-60')
+              techStack?.classList.remove('translate-y-7')
+
+              const prevSlide = e.slides[e.activeIndex - 1]
+
+              if (prevSlide)
+                  removeSlideStyles(prevSlide)
+
+              const nextSlide = e.slides[e.activeIndex + 1]
+
+              if (nextSlide)
+                  removeSlideStyles(nextSlide)
+          },
+         reachBeginning: function () {
+              const prevBtn = document.querySelector('.prev-slide')
+          }
+      }
   })
 </script>

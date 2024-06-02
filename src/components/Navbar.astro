@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import SideMenu from "./SideMenu.astro"
 ---
 
 <style>
@@ -24,7 +25,7 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
   <div>
-    <Icon name="hamburger_icon" class="h-10 w-10 lg:hidden" />
+    <Icon id="hamburger_icon" name="hamburger_icon" class="h-10 w-10 lg:hidden" />
     <div class="hidden flex-row gap-3 lg:flex">
       <Icon name="github_solid" class="h-6 w-6" />
       <Icon name="linkedin" class="h-6 w-6" />
@@ -33,11 +34,20 @@ import { Icon } from "astro-icon/components";
       <Icon name="mail" class="h-6 w-6" />
     </div>
   </div>
+    <SideMenu/>
 </nav>
 
 <script>
   //https://davidwalsh.name/detect-sticky
   const nav = document.getElementById('nav');
+  const sideMenu = document.getElementById('sideMenu');
+  const hamburgerIcon = document.getElementById('hamburger_icon');
+
+  hamburgerIcon?.addEventListener('click', () => {
+      if(sideMenu)
+        sideMenu.classList.toggle('translate-x-[100%]')
+  })
+
   const observer = new IntersectionObserver(
     ([e]) => e.target.classList.toggle('is-pinned',
       e.intersectionRatio < 1),
@@ -45,4 +55,6 @@ import { Icon } from "astro-icon/components";
     )
 
   observer.observe(nav as Element)
+
+    
 </script>

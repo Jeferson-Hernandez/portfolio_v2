@@ -11,23 +11,34 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<div class="flex flex-col gap-2 bg-secondary px-2 pt-2 pb-1 rounded-lg w-[350px] h-[300px] bg-[url('/noise_light.png')]">
-  <div class="flex flex-row justify-between items-center gap-5">
-    <h2 class="text-lg text-oswald font-bold text-primary lg:text-xl">{project.name}</h2>
-    <div class="flex flex-row gap-2">
-      {
-        project.figma 
-          && <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center"><Icon name="figma" class="h-5 w-5"/></a>
-      }
-      <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center"><Icon name="github_outline" class="h-5 w-5"/></a>
-      <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center"><Icon name="live_project" class="h-4 w-4"/></a>
+<div id="project_card" class="flex flex-col gap-2 bg-secondary px-2 pt-2 pb-1 z-40 rounded-lg w-[350px] bg-[url('/noise_light.png')] transition-transform duration-500">
+    <div class="flex flex-row justify-between items-center gap-5">
+        <h2 class="text-lg text-oswald font-bold text-primary lg:text-xl">{project.name}</h2>
+        <div class="flex flex-row gap-2">
+            {
+            project.figma 
+              && <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center">
+                <Icon name="figma" class="h-5 w-5"/>
+            </a>
+            }
+            <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center">
+                <Icon name="github_outline" class="h-5 w-5"/>
+            </a>
+            <a class="w-10 h-10 rounded-full bg-primary grid items-center justify-center">
+                <Icon name="live_project" class="h-4 w-4"/>
+            </a>
+        </div>
     </div>
-  </div>
-  <Image 
-    src={spaceTourism}
-    alt="space tourism"
-    width="900"
-    height="700"
-    class="w-full h-full object-cover rounded"
-  />
+    <Image 
+        src={spaceTourism}
+        alt="space tourism"
+        width="900"
+        height="700"
+        class="w-full h-[200px] object-cover rounded"
+    />
+    <div id="tech" class="absolute flex flex-row flex-wrap gap-3 left-0 py-5 px-5 translate-y-7 w-full -z-10 bg-secondary bg-[url('/noise_light.png')] rounded-b-lg text-primary transition-transform duration-500">
+        <span class="border rounded text-sm font-montserrat font-bold px-3 py-1 border-primary">React</span>
+        <span class="border rounded text-sm font-montserrat font-bold px-3 py-1 border-primary">React</span>
+        <span class="border rounded text-sm font-montserrat font-bold px-3 py-1 border-primary">React</span>
+    </div>
 </div>

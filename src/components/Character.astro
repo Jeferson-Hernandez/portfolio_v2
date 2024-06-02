@@ -16,11 +16,11 @@
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvasElm as HTMLElement });
     renderer.setSize(320, 320, true);
 
-    window.addEventListener('load', (e) => {
+    window.addEventListener('load', () => {
       resizeCharacter(window.innerWidth)
     })
 
-    window.addEventListener('resize', (e) => {
+    window.addEventListener('resize', () => {
       resizeCharacter(window.innerWidth)
     })
 
@@ -46,8 +46,8 @@
     }
 
     const controls = new OrbitControls( camera, renderer.domElement );
-    controls.object.position.set(0, 0, 3)
-    controls.target = new THREE.Vector3(0, 1.5, 0)
+    controls.object.position.set(0, 0, 2)
+    controls.target = new THREE.Vector3(0, 2, -1.5)
     setTimeout(() => {
       controls.autoRotate = true;
     },2000)
@@ -69,6 +69,7 @@
         requestAnimationFrame(animate);
         // required if controls.enableDamping or controls.autoRotate are set to true
         controls.update();
+        
         renderer.render(scene, camera);
     };
     animate()
