@@ -59,7 +59,9 @@ import Photo from "../assets/photo.jpg"
   const sideMenu = document.getElementById('sideMenu');
   const hamburgerIcon = document.getElementById('hamburger_icon');
 
-  nav?.classList.remove('opacity-0')
+  window.addEventListener('load', () => {
+    nav?.classList.remove('opacity-0')
+  })
 
   hamburgerIcon?.addEventListener('click', () => {
       if(sideMenu)
