@@ -6,13 +6,44 @@ import Abilities from '../sections/Abilities.astro';
 import Projects from '../sections/Projects.astro';
 import Footer from '../components/Footer.astro';
 ---
+<style>
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+    } 
+</style>
 
 <Layout title="Jh portafolio">
-	<main>
+    <main>
       <Hero/>
       <Navbar/>
       <Abilities/>
       <Projects/>
       <Footer/>
     </main>
+    <div class="loading_screen fixed bg-[url('/noise_dark.png')] inset-0 bg-dark w-full h-full z-50 grid justify-center items-center">
+      <span class="loader"></span>
+    </div>
 </Layout>
+
+
+<script>
+  window.addEventListener('load', () => {
+    document.querySelector('.loading_screen')?.classList.add('hidden')
+  })
+</script>
