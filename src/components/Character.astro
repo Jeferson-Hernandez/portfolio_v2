@@ -1,6 +1,6 @@
 ---
 ---
-<div id="character_container" class="translate-x-[1000px] transition-transform duration-[2000ms] delay-500">
+<div id="character_container" class="scale-0 transition-transform duration-[1000ms] delay-700">
   <canvas id="character_canvas"></canvas>
 </div>
 
@@ -57,7 +57,7 @@
         const main = gltf.scene;
         scene.add(main);
         resizeCharacter(window.innerWidth)
-        canvasContainer?.classList.remove('translate-x-[1000px]')
+        canvasContainer?.classList.remove('scale-0')
     });
 
     const light = new THREE.AmbientLight( 0xE1E1E1 ); // soft white light
