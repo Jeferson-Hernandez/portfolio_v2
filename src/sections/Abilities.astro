@@ -4,9 +4,9 @@ import SectionTitle from "../components/SectionTitle.astro";
 import { ABILITIES } from '../consts/abilities';
 ---
 
-<section class="pt-24 pb-24 px-3 lg:pb-36">
+<section id="abilities" class="relative pt-24 px-3 lg:pb-36">
   <SectionTitle title="Habilidades" reverse={false} />
-  <div class="flex flex-col items-center pt-20">
+  <div class="flex flex-col items-center pt-20 text-primary">
     <div class="relative bg-[url('/noise_light.png')] flex flex-row justify-between text-center rounded-2xl bg-secondary">
       <button data-type="development" class="abilities text-base font-oswald font-bold py-5 px-4 z-10 w-28 text-secondary transition-colors delay-150 duration-200">Desarrollo</button>
       <button data-type="technical" class="abilities text-base font-oswald font-bold py-5 px-4 z-10 w-28 text-primary transition-colors delay-150 duration-200">Técnicas</button>
@@ -14,7 +14,7 @@ import { ABILITIES } from '../consts/abilities';
     </div>
   </div>
   <div class="pt-20">
-    <div id="development" class="flex flex-col md:flex-row md:gap-28 md:justify-center">
+    <div id="development" class="flex flex-col md:flex-row md:gap-28 md:justify-center lg:gap-64">
       {
         ABILITIES.map((ability) => 
           ability.type === 'development' &&
@@ -31,6 +31,12 @@ import { ABILITIES } from '../consts/abilities';
       }
     </div>
   </div>
+  <div class="absolute hidden md:block -right-[250px] top-[460px]  lg:top-[500px] rotate-90 text-secondary font-montserrat opacity-20 tracking-[.30em]">
+    Games <span class="text-yellow-600">&</span>
+    Bloodborne <span class="text-yellow-600">&</span>
+    Sekiro <span class="text-yellow-600">&</span>
+    Elden ring
+  </div>
 </section>
 
 <script>
@@ -39,14 +45,19 @@ import { ABILITIES } from '../consts/abilities';
   const abilitiesBg = document.querySelector('.bg-abilities')
 
   technical?.classList.add('hidden')
+  development?.classList.remove('-translate-x-80')
 
   const buttons = document.querySelectorAll('.abilities')
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
+      if (!(e.target instanceof HTMLElement)) {
+        return
+      }
       if (e.target?.dataset.type === 'development') {
         development?.classList.remove('hidden')
         technical?.classList.add('hidden')
+        development?.classList.add('animate-fadeInHidden')
 
         abilitiesBg?.classList.remove('translate-x-full')
         buttons[0].classList.add('text-secondary')
@@ -54,6 +65,7 @@ import { ABILITIES } from '../consts/abilities';
       } else {
         technical?.classList.remove('hidden')
         development?.classList.add('hidden')
+        technical?.classList.add('animate-fadeInHidden')
 
         abilitiesBg?.classList.add('translate-x-full')
         buttons[0].classList.remove('text-secondary')

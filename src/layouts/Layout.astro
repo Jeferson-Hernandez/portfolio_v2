@@ -7,7 +7,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Personal portafolio" />
@@ -19,7 +19,7 @@ const { title } = Astro.props;
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 		<title>{title}</title>
 	</head>
-	<body class="overflow-x-hidden bg-dark bg-[url('/noise_dark.png')]">
+	<body class="bg-dark bg-[url('/noise_dark.png')]">
 		<slot />
 	</body>
 </html>

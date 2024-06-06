@@ -3,17 +3,31 @@ import { Icon } from "astro-icon/components";
 ---
 
 <footer class="flex flex-row items-center justify-between h-[100px] bg-secondary bg-[url('/noise_light.png')] px-5">
-  <h3 class="text-lg font-oswald text-primary flex flex-row items-center gap-2 "><Icon name="copyright" class="h-4 w-4" /> Jeferson Hernandez - 2024</h3>
+  <h3 class="text-base font-oswald text-primary flex flex-row items-center gap-2 md:text-lg"><Icon name="copyright" class="h-4 w-4" /> Jeferson Hernandez - 2024</h3>
   <div class="hidden text-primary flex-row gap-3 lg:flex">
-    <a href="#" class="font-montserrat text-sm">Inicio</a>
-    <a href="#" class="font-montserrat text-sm">Habilidades</a>
-    <a href="#" class="font-montserrat text-sm">Proyectos</a>
+    <a href="#hero" class="font-montserrat text-sm hover:font-bold">Inicio</a>
+    <a href="#abilities" class="font-montserrat text-sm hover:font-bold">Habilidades</a>
+    <a href="#projects" class="font-montserrat text-sm hover:font-bold">Proyectos</a>
   </div>
-  <div class="hidden flex-row gap-3 lg:flex">
-    <Icon name="github_solid" class="h-6 w-6" />
-    <Icon name="linkedin" class="h-6 w-6" />
-    <Icon name="twitter" class="h-6 w-6" />
-    <Icon name="line" class="h-6 w-6" />
-    <Icon name="mail" class="h-6 w-6" />
+  <div>
+    <div class="flex flex-row gap-3 md:hidden">
+        <a href="https://github.com/Jeferson-Hernandez" target="_blank">
+          <Icon name="github_solid" class="h-5 w-5 hover:scale-110 transition-transform duration-200" />
+        </a>
+        <a href="https://www.linkedin.com/in/jefer-hernandez/" target="_blank">
+          <Icon name="linkedin" class="h-5 w-5 hover:scale-110 transition-transform duration-200"/>
+        </a>
+        <a href="https://x.com/Blakintk" target="_blank">
+          <Icon name="twitter" class="h-5 w-5 hover:scale-110 transition-transform duration-200"/>
+        </a>
+        <a href="mailto:jefry_2558@hotmail.com" target="_blank">
+          <Icon name="mail" class="h-5 w-5 hover:scale-110 transition-transform duration-200"/>
+        </a>
+    </div>
+    <h3 class="hidden text-base font-oswald text-primary gap-2 md:block">
+      <a href="mailto:jefry_2558@hotmail.com">
+        Jefry_2558@hotmail.com
+      </a>
+    </h3>
   </div>
 </footer>

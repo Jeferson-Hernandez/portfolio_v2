@@ -12,6 +12,15 @@ export default {
                 secondary: "var(--color-secondary)",
                 dark: "var(--color-dark)"
             },
+            keyframes: {
+              fadeInHidden: {
+                '0%': { opacity: 0 },
+                '100%': { visibility: 'visible', opacity: 1 }
+              }
+            },
+            animation: {
+              fadeInHidden: 'fadeInHidden 1s ease-in'
+            }
         },
 	},
 	plugins: [],

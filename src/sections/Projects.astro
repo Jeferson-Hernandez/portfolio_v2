@@ -7,12 +7,7 @@ import ProjectCard from "../components/ProjectCard.astro"
 
 <style>
   .swiper-slide {
-    width: 350px;
-  }
-
-  .swiper-slide-prev #tech > span{
-      color: red;
-      background: red;
+    width: 320px;
   }
 
   .swiper {
@@ -20,21 +15,21 @@ import ProjectCard from "../components/ProjectCard.astro"
   }
 </style>
 
-<section class="pb-48">
+<section id="projects" class="relative pb-48 pt-24">
   <SectionTitle title="Proyectos" reverse={true} />
-  <div class="swiper h-[500px]">
+  <div class="swiper h-[600px]">
     <div class="swiper-wrapper">
       {
-        PROJECTS.map((project) => <div class="swiper-slide">
+        PROJECTS.map((project) => <div class="swiper-slide w-[320px]">
                 <ProjectCard project={project}/>
             </div>
             )
       }
     </div>
   </div>
-  <div class="flex flex-row items-center justify-center gap-20 pt-20">
-    <div class="prev-slide h-12 w-12 bg-secondary rounded-lg grid items-center justify-center cursor-pointer rotate-180"><Icon name="next" class="h-6 w-6"/></div>
-    <div class="next-slide h-12 w-12 bg-secondary rounded-lg grid items-center justify-center cursor-pointer"><Icon name="next" class="h-6 w-6"/></div>
+  <div class="flex flex-row items-center justify-center gap-20">
+    <div class="prev-slide h-12 w-12 bg-secondary rounded-lg grid items-center justify-center cursor-pointer rotate-180 hover:scale-110 transition-transform duration-200"><Icon name="next" class="h-6 w-6"/></div>
+    <div class="next-slide h-12 w-12 bg-secondary rounded-lg grid items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200"><Icon name="next" class="h-6 w-6"/></div>
   </div>
 </section>
 
@@ -43,6 +38,7 @@ import ProjectCard from "../components/ProjectCard.astro"
   import { Navigation } from 'swiper/modules';
   import 'swiper/css';
   import 'swiper/css/navigation';
+  import { PROJECTS } from "../consts/projects"
 
   function removeSlideStyles(e: HTMLElement) {
       const projectCard = e.querySelector('#project_card')
@@ -53,10 +49,25 @@ import ProjectCard from "../components/ProjectCard.astro"
       techStack?.classList.add('translate-y-7')
   }
 
+  function buttonSlideState(e: Swiper) {
+      if (e.activeIndex === 0) {
+          document.querySelector('.prev-slide')?.classList.add('bg-gray-500')
+          document.querySelector('.prev-slide')?.classList.remove('bg-secondary')
+        } else if (e.activeIndex === e.slides.length - 1) {
+          document.querySelector('.next-slide')?.classList.add('bg-gray-500')
+          document.querySelector('.next-slide')?.classList.remove('bg-secondary')
+        } else {
+          document.querySelector('.next-slide')?.classList.remove('bg-gray-500')
+          document.querySelector('.prev-slide')?.classList.remove('bg-gray-500')
+          document.querySelector('.next-slide')?.classList.add('bg-secondary')
+          document.querySelector('.prev-slide')?.classList.add('bg-secondary')
+      }
+  }
+
   new Swiper('.swiper', {
     modules: [Navigation],
     direction: 'horizontal',
-    initialSlide: 2,
+    initialSlide: PROJECTS.length / 2,
     navigation: {
       prevEl: '.prev-slide',
       nextEl: '.next-slide',
@@ -64,6 +75,14 @@ import ProjectCard from "../components/ProjectCard.astro"
     slidesPerView: 'auto',
     spaceBetween: 100,
     centeredSlides: true,
+      breakpoints: {
+          680: {
+              spaceBetween: 150
+          },
+          1024: {
+              spaceBetween: 200
+          }
+      },
       on: {
           slideChange: function (e) {
               const active = e.slides[e.activeIndex]
@@ -76,17 +95,18 @@ import ProjectCard from "../components/ProjectCard.astro"
 
               const prevSlide = e.slides[e.activeIndex - 1]
 
-              if (prevSlide)
-                  removeSlideStyles(prevSlide)
+              if (prevSlide) {
+                removeSlideStyles(prevSlide)
+              }
 
               const nextSlide = e.slides[e.activeIndex + 1]
 
-              if (nextSlide)
-                  removeSlideStyles(nextSlide)
-          },
-         reachBeginning: function () {
-              const prevBtn = document.querySelector('.prev-slide')
-          }
+              if (nextSlide) {
+                removeSlideStyles(nextSlide)
+              }
+
+              buttonSlideState(e)
+        },
       }
   })
 </script>

@@ -1,7 +1,7 @@
 ---
 ---
-<div id="character" class="">
-  <canvas id="character_canvas"class=""></canvas>
+<div id="character">
+  <canvas id="character_canvas" class="scale-0 transition-transform duration-1000 delay-200"></canvas>
 </div>
 
 <script>
@@ -18,6 +18,7 @@
 
     window.addEventListener('load', () => {
       resizeCharacter(window.innerWidth)
+      canvasElm?.classList.remove('scale-0')
     })
 
     window.addEventListener('resize', () => {
@@ -38,9 +39,9 @@
         camera.updateProjectionMatrix()
         renderer.setSize(520, 520)
       } else if (screen > 1280) {
-        camera.aspect = 620 /620 
+        camera.aspect = 660 /660 
         camera.updateProjectionMatrix()
-        renderer.setSize(620, 620)
+        renderer.setSize(660, 660)
       }
 
     }

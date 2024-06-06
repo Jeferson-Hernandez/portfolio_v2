@@ -9,10 +9,10 @@ interface Props {
 const { ability } = Astro.props;
 ---
 
-<div class="flex flex-col gap-3 items-center justify-center pb-10 text-secondary text-center">
+<div class="flex flex-col gap-3 items-center pb-10 text-secondary text-center">
   <Icon name={ability.icon} class="h-28 w-28"/>
   <h3 class="pb-2 text-2xl font-oswald font-bold">{ability.name}</h3>
-  <div class="grid grid-cols-2 gap-1 text-lg font-montserrat md:grid-cols-1">
+  <div class="grid grid-cols-2 gap-1 text-base md:text-lg font-montserrat md:grid-cols-1">
     {
       ability.abilities.map((ab) => 
         <span>{ab}</span>
