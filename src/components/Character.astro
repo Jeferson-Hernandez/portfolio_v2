@@ -1,7 +1,7 @@
 ---
 ---
 <div id="character">
-  <canvas id="character_canvas" class="scale-0 transition-transform duration-1000 delay-200"></canvas>
+  <canvas id="character_canvas" class="translate-x-[1000px] transition-transform duration-[2000ms] delay-500"></canvas>
 </div>
 
 <script>
@@ -18,7 +18,7 @@
 
     window.addEventListener('load', () => {
       resizeCharacter(window.innerWidth)
-      canvasElm?.classList.remove('scale-0')
+      canvasElm?.classList.remove('translate-x-[1000px]')
     })
 
     window.addEventListener('resize', () => {
@@ -51,7 +51,7 @@
     controls.target = new THREE.Vector3(0, 2, -1.5)
     setTimeout(() => {
       controls.autoRotate = true;
-    },2000)
+    },3000)
     controls.minPolarAngle = 1.3;
     controls.maxPolarAngle = 1.3;
     controls.update()
