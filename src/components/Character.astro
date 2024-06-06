@@ -1,7 +1,7 @@
 ---
 ---
-<div id="character">
-  <canvas id="character_canvas" class="translate-x-[1000px] transition-transform duration-[2000ms] delay-500"></canvas>
+<div id="character_container" class="translate-x-[1000px] transition-transform duration-[2000ms] delay-500">
+  <canvas id="character_canvas"></canvas>
 </div>
 
 <script>
@@ -10,6 +10,7 @@
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
     const canvasElm = document.getElementById('character_canvas');
+    const canvasContainer = document.getElementById('character_container');
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 320 / 320, .5, 1000);
@@ -18,7 +19,7 @@
 
     window.addEventListener('load', () => {
       resizeCharacter(window.innerWidth)
-      canvasElm?.classList.remove('translate-x-[1000px]')
+      canvasContainer?.classList.remove('translate-x-[1000px]')
     })
 
     window.addEventListener('resize', () => {
