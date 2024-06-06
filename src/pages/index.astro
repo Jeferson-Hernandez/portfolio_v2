@@ -15,17 +15,7 @@ import Footer from '../components/Footer.astro';
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
-    animation: rotation 1s linear infinite;
     }
-
-    @keyframes rotation {
-      0% {
-          transform: rotate(0deg);
-      }
-      100% {
-          transform: rotate(360deg);
-      }
-    } 
 </style>
 
 <Layout title="Jh portafolio">
@@ -37,7 +27,7 @@ import Footer from '../components/Footer.astro';
       <Footer/>
     </main>
     <div class="loading_screen fixed bg-[url('/noise_dark.png')] inset-0 bg-dark w-full h-full z-50 grid justify-center items-center">
-      <span class="loader"></span>
+      <span class="loader animate-spin"></span>
     </div>
 </Layout>
 
