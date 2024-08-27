@@ -16,7 +16,7 @@ export const ABILITIES: Ability[] = [
     type: 'development',
     name: 'Back-End',
     icon: 'backend',
-    abilities: ['python', 'node', 'postgresql', 'mongodb']
+    abilities: ['python', 'node-express', 'postgresql', 'mongodb']
   },
   {
     type: 'development',
@@ -26,7 +26,7 @@ export const ABILITIES: Ability[] = [
   },
   {
     type: 'technical',
-    name: 'Tools',
+    name: 'Technical',
     icon: 'tools',
     abilities: ['vscode', 'vim/nvim']
   },
